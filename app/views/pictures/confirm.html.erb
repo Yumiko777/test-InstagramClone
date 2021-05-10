@@ -1,0 +1,9 @@
+<h3>以下の内容で、送信する。</h3>
+<%= form_with(model: @picture, url: pictures_path, local: true) do |form| %>
+  <%= form.hidden_field :content %>
+  <%= form.hidden_field :image %>
+  <p>本文:<%= @picture.content %></p>
+  <%= image_tag(@picture.image.url) if @picture.image && @picture.image.url %>
+  <%= form.submit  "写真を投稿する" %>
+  <%= form.submit "戻る", name: 'back' %>
+<% end %>
