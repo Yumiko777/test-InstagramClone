@@ -11,11 +11,6 @@ class PicturesController < ApplicationController
 
   def new
     @picture = Picture.new
-    if params[:back]
-      @picture = Picture.new(picture_params)
-    else
-      @picture = Picture.new
-    end
   end
 
   def confirm
@@ -30,42 +25,30 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     @picture.user_id = current_user.id
-
-    respond_to do |format|
-      if @picture.save
-        PicturetMailer.picture_mail(@picture).deliver
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
-      else
-        format.html { render :new }
-        format.json { render :show, status: :created, location: @picture }
-      end
-     end
+    if @picture.save
+      PicturetMailer.picture_mail(@picture).deliver
+      redirect_to pictures_path, notice: "作成しました！"
+    else
+      render : new
+    end
   end
 
   def update
-    respond_to do |format|
-      if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @picture }
-      else
-        format.html { render :edit }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
-      end
+    if @picture.update(picture_params)
+      redirect_to pictures_path, notice: "編集しました！"
+    else
+      render :edit
     end
   end
 
   def destroy
     @picture.destroy
-    respond_to do |format|
-      format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to pictures_path, notice: "削除しました！"
   end
 
   private
   def picture_params
-    params.require(:picture).permit(:image, :image_cache, :content, :name, :email)
+    params.require(:picture).permit(:image, :image_cache, :content)
   end
 
   def set_picture

@@ -1,5 +1,6 @@
 <h1>写真詳細画面</h1>
 <p>内容: <%= @picture.content %></p>
+<p>投稿者: <%= @picture.user.name %></p>
 <p id="notice"><%= notice %></p>
 <p>
   <strong>投稿者:</strong>
@@ -9,6 +10,11 @@
   <strong>Image:</strong>
   <%= image_tag @picture.image.url %>
 </p>
+<% if @picture.user_id == current_user.id %>
+  <div>
+    <%= link_to "編集する", edit_picture_path(picture.id), data: { confirm: '本当に編集していいですか？' }%>
+    <%= link_to "削除する", pictures_path(picture.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }  %>
+  </div>
 <% unless @picture.user_id == current_user.id %>
   <% if @favorite.present? %>
     <%= link_to 'お気に入り解除する', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
@@ -16,5 +22,3 @@
     <%= link_to 'お気に入りする', favorites_path(picture_id: @picture.id), method: :post, class: 'btn btn-primary' %>
   <% end %>
 <% end %>
-<%= link_to 'Edit', edit_picture_path(@picture) %> |
-<%= link_to 'Back', pictures_path %>
