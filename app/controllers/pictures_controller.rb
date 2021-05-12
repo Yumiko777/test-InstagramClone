@@ -29,7 +29,7 @@ class PicturesController < ApplicationController
       PicturetMailer.picture_mail(@picture).deliver
       redirect_to pictures_path, notice: "作成しました！"
     else
-      render : new
+      render :new
     end
   end
 
