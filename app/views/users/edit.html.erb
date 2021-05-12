@@ -9,6 +9,7 @@
     </ul>
   </div>
 <% end %>
+
 <%= form_with(model: @user, local: true) do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
@@ -19,6 +20,6 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   <%= f.label :image %>
-  <%= f.file_field :image>
-  <%= f.submit "Create my account" %>
+  <%= f.file_field :image %>
+  <%= f.submit "更新する" %>
 <% end %>
