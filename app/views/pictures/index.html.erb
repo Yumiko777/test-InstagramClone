@@ -1,7 +1,7 @@
 <div class='container'>
 <h1 class='title' >写真の一覧</h1>
 <p><%= notice %></p>
-<p><%= link_to '写真新規作成画面へ' , new_picture_path =%></p>
+
 <table>
   <tr>
     <th>内容</th>
@@ -17,4 +17,6 @@
 <% end %>
 </table>
 <br>
-<%= link_to '新しい写真を投稿する', new_picture_path =%>
+<% if logged_in? %>
+  <%= link_to '新しい写真を投稿する', new_picture_path =%>
+<% end %>
