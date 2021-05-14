@@ -20,8 +20,9 @@
   </div>
   <br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "更新する"%>
   </div>
 <% end %>
-<br>
-<%= link_to "一覧画面に戻る", pictures_path %>
+
+<%= link_to "一覧画面に戻る", pictures_path %><br>
+<%= link_to "マイページに戻る", user_path(current_user.id) %>

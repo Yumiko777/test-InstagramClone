@@ -10,13 +10,15 @@
   <tr>
     <td><%= picture.content %></td>
     <td><%= picture.user.name %></td>
+    <% if logged_in? %>
     <td><%= link_to '詳細を確認する', picture_path(picture.id) %></td>
-    <td><%= link_to '写真を編集する', edit_picture_path(picture.id), data: { confirm: '本当に編集していいですか？' }%></td>
-    <td><%= link_to '写真を削除する', picture_path(picture.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to '編集する', edit_picture_path(picture.id) %></td>
+    <td><%= link_to '削除する', picture_path(picture.id) , method: :delete ,data: { confirm: '本当に削除していいですか？' }  %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 <br>
 <% if logged_in? %>
-  <%= link_to '新しい写真を投稿する', new_picture_path =%>
+  <%= link_to '新しい写真を投稿する', new_picture_path %>
 <% end %>
