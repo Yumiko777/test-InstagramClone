@@ -1,5 +1,7 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in?, only:[:new,:create]
+  before_action :set_currentuser, only: [:edit, :update, :destroy]
 
   def index
     @pictures = Picture.all
@@ -20,6 +22,11 @@ class PicturesController < ApplicationController
   end
 
   def edit
+    if @picture.user.name == current_user.name
+      render "edit"
+    else
+      redirect_to pictures_path
+    end
   end
 
   def create
@@ -29,8 +36,8 @@ class PicturesController < ApplicationController
       render :new
     else
       if @picture.save
-      PictureMailer.picture_mail(@picture).deliver
-      redirect_to pictures_path, notice: "作成しました！"
+        PictureMailer.picture_mail(@picture).deliver
+        redirect_to pictures_path, notice: "作成しました！"
       else
         render :new
       end
@@ -57,5 +64,9 @@ class PicturesController < ApplicationController
 
   def set_picture
     @picture = Picture.find(params[:id])
+  end
+  
+  def set_currentuser
+    @current_user = current_user
   end
 end

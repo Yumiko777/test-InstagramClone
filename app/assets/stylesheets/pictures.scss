@@ -1,29 +1,93 @@
+.main_content{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 90px;
+}
+.article_main{
+  width:614px;
+  border:1px solid;
+  padding:10px;
+  margin-bottom:10px;
+  display: flex;
+}
+.content_userimg img{
+  width: 120px;
+}
+.content_userimg{
+  margin-left: 20px;
+  text-align: center;
+}
+.content_userimg a{
+  color: #3578D3;
+  font-weight: bolder;
+  text-decoration: none;
+}
+.content_main{
+  margin: 0 65px;
+  text-align: left;
+}
+//ログイン画面
+.fill_in{
+  margin: 0 auto 0 auto;
+}
+//新規作成
+.newpost_fillin{
+  margin-left:150px;
+}
+.favorite_top img{
+  width: 90px;
+}
 html {
-  font-size: 70%;
+  position: relative;
   height: 100%;
+}
+*{
+  margin:0px;
+  padding:0px;
 }
 body {
-  height: 100%;
+  text-align: center;
+  height:100%;
+}
+li{
+    list-style:none;
+}
+ul{
+    padding:0;
 }
 header {
-  background-color: #beb3f5;
   width: 100%;
-  font-size: 1.5rem;
+  background-color: #b17ce6;
+  height: 54px;
+  margin: 0
 }
-footer{
+header ul {
+  margin: 0 auto;
+  list-style: none;
+}
+header ul a {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: white;
+}
+header li {
+  float: left;
+  width: auto;
+}
+header ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+footer {
   width: 100%;
+  background-color: #b17ce6;
+  padding: 20px 0 10px 0;
+  color: white;
+  margin: auto;
+  padding-bottom: 10px;
+  font-size: 12px;
   bottom: 0;
-  background-color: #b3f5b3;
-  display: table;
-}
-.footer p {
-  font-size: 1rem;
-  color: #fff;
-  text-align: center;
-  vertical-align: middle;
-  display: table-cell;
-}
-.h {
-  color: #b3dff5;
-  font-size: 20px;
+  position:absolute;
 }

@@ -13,5 +13,6 @@
       <%= link_to 'プロフィールを編集', edit_user_path(@user) %>
     <% end %>
   <% else %>
-    <%= link_to '戻る', pictures_path %>
+    <h1>ユーザー：<%= @user.name %>を登録しました。</h1>
+    <h3><%= link_to "ログイン", new_session_path %>してください</h3>
   <% end %>
